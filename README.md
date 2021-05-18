@@ -13,3 +13,11 @@ rabbit-modular 是一个 RabbitMQ 快速使用模板。其中里面有三种常�
 步骤3：定义消息发送的实体类。
 
 项目接入文档：撰写中……
+
+### Quick Start
+
+step 1: modify RabbitMQ client config in yml.
+
+step 2: add or eidt ExchangeEnum 、BindEnum、QueueEnum, when the project start , it will automatically create the corresponding queue and switch according to the enumeration configuration.
+
+step 3: define the entity for RabbitMQ sending .
