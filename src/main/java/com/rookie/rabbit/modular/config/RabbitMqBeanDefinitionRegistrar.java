@@ -1,5 +1,6 @@
 package com.rookie.rabbit.modular.config;
 
+import com.rabbitmq.client.BuiltinExchangeType;
 import com.rookie.rabbit.modular.enums.ExchangeEnum;
 import com.rookie.rabbit.modular.enums.QueueEnum;
 import org.springframework.amqp.core.*;
@@ -28,14 +29,15 @@ public class RabbitMqBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
         for (ExchangeEnum value : ExchangeEnum.values()) {
             BeanDefinitionBuilder rootBeanDefinition = null;
 
-            if (value.getType() == 1) {
-                rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(DirectExchange.class);
-            } else if (value.getType() == 2) {
-                rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(FanoutExchange.class);
-            } else if (value.getType() == 3) {
-                rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(TopicExchange.class);
-            } else {
-                rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(DirectExchange.class);
+            switch (value.getExchangeType()) {
+                case FANOUT:
+                    rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(FanoutExchange.class);
+                    break;
+                case TOPIC:
+                    rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(TopicExchange.class);
+                    break;
+                default:
+                    rootBeanDefinition = BeanDefinitionBuilder.rootBeanDefinition(DirectExchange.class);
             }
 
             rootBeanDefinition.addConstructorArgValue(value.getName());
@@ -47,6 +49,7 @@ public class RabbitMqBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
 
     /**
      * 注册队列
+     *
      * @param registry BeanDefinitionRegistry
      */
     private void registerQueue(BeanDefinitionRegistry registry) {

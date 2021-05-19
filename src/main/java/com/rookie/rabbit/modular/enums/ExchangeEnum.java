@@ -1,5 +1,6 @@
 package com.rookie.rabbit.modular.enums;
 
+import com.rabbitmq.client.BuiltinExchangeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,18 +14,18 @@ public enum ExchangeEnum {
     /**
      * 交换器列表
      */
-    DEFAULT_EXCHANGE(1,"default_exchange",1,0,"默认交换器","defaultExchange"),
+    DEFAULT_EXCHANGE(BuiltinExchangeType.DIRECT,"default_exchange",1,0,"默认交换器","defaultExchange"),
 
-    FANOUT_EXCHANGE(2,"fanout_exchange",1,0,"fanout交换器","fanoutExchange"),
+    FANOUT_EXCHANGE(BuiltinExchangeType.FANOUT,"fanout_exchange",1,0,"fanout交换器","fanoutExchange"),
 
-    TOPIC_EXCHANGE(3,"topic_exchange",1,0,"topic交换器","topicExchange");
+    TOPIC_EXCHANGE(BuiltinExchangeType.TOPIC,"topic_exchange",1,0,"topic交换器","topicExchange");
 
     /**
      * 1:direct
      * 2:Fanout
      * 3、topic
      */
-    private int type;
+    private BuiltinExchangeType exchangeType;
 
     /**
      * 交换器名称
