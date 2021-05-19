@@ -12,4 +12,4 @@ rabbit-modular 是一个 RabbitMQ 快速使用模板。其中里面有三种常�
 
 步骤3：定义消息发送的实体类。
 
-项目接入文档：撰写中……
+项目接入文档：https://www.nblogs.cn/doc/rabbitmq
