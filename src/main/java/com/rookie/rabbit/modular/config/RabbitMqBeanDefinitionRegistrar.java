@@ -4,6 +4,7 @@ import com.rabbitmq.client.BuiltinExchangeType;
 import com.rookie.rabbit.modular.enums.ExchangeEnum;
 import com.rookie.rabbit.modular.enums.QueueEnum;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
@@ -59,6 +60,7 @@ public class RabbitMqBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
             rootBeanDefinition.addConstructorArgValue(getBooleanValue(value.getDurable()));
             rootBeanDefinition.addConstructorArgValue(false);
             rootBeanDefinition.addConstructorArgValue(getBooleanValue(value.getAutoDelete()));
+            rootBeanDefinition.addConstructorArgValue(value.getArgs());
             registry.registerBeanDefinition(value.getBeanName(), rootBeanDefinition.getBeanDefinition());
         }
     }

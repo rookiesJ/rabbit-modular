@@ -30,10 +30,15 @@ public class DirectMqListener {
         System.out.println("监听2：");
         System.out.println(message);
         channel.basicAck(tag, false);
+
     }
 
     @RabbitListener(queues = QueueConstant.SMS_PUSH_QUEUE)
-    public void smsLister(String message) {
+    public void smsLister(String message,Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag) throws IOException {
+        System.out.println(1);
         System.out.println(message);
+//        消息拒绝并且重新排队。
+        channel.basicReject(tag,true);
+//        channel.basicAck(tag, false);
     }
 }
