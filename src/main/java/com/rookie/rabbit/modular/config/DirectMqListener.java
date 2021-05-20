@@ -2,6 +2,7 @@ package com.rookie.rabbit.modular.config;
 
 import com.rabbitmq.client.Channel;
 import com.rookie.rabbit.modular.constant.QueueConstant;
+import com.rookie.rabbit.modular.util.RabbitArgumentBuilder;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Header;

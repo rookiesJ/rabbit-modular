@@ -12,6 +12,10 @@ public class RabbitArgumentBuilder {
 
     private Map<String, Object> args;
 
+    private RabbitArgumentBuilder(){
+
+    }
+
     public static RabbitArgumentBuilder build() {
         RabbitArgumentBuilder rabbitArgumentBuilder = new RabbitArgumentBuilder();
         rabbitArgumentBuilder.args = new HashMap<>();
