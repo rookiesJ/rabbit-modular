@@ -21,6 +21,7 @@ public class DirectMqListener {
             System.out.println(message);
             channel.basicQos(1);
             channel.basicAck(tag, false);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
